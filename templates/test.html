@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AutoTest</title>
+</head>
+<body>
+ <form method="post">
+    {{ form.csrf_token() }} <br>
+    {{ form.username.lable }}{{ form.username }} <br>
+    {{ form.password.lable }}{{ form.password }} <br>
+    {{ form.password2.lable }}{{ form.password2 }} <br>
+    {{ form.submit }} <br>
+</form>
+</body>
+</html>

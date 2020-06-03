@@ -1,0 +1,15 @@
+{
+  "schemes": [
+    "http"
+  ],
+  "swagger": "2.0",
+  "info": {
+    "description": "Provide EXAMPLE APIs info",
+    "title": "EXAMPLE APIs",
+    "version": "1.x.x"
+  },
+  "host": "localhost:8000",
+  "basePath": "/api/path/v1",
+  "paths": {
+  }
+  

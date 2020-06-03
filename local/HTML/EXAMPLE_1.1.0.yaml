@@ -1,0 +1,18 @@
+---
+swagger: "2.0"
+schemes:
+  - "http"
+  - "https"
+produces:
+  - "application/json"
+  - "text/plain"
+consumes:
+  - "application/json"
+  - "text/plain"
+basePath: "/api/v1"
+info:
+  title: "EXAMPLE 2 API"
+  version: "0.6"
+  description: 
+
+paths:

@@ -1,0 +1,5 @@
+APIFunction|protocol|http_method|path|header|pathVariable|queryParameter|body|response
+新增用户|http|post|/users|{'Authorization': 'string'}|||{'email': 'string', 'login_name': 'string', 'name': 'string', 'password': 'string', 'phone_number': 'string', 'role': 'string', 'status': 'string'}|{'id': 'string'}
+查询用户信息|http|get|/users|{'Authorization': 'string'}||{'department_id': 'string', 'name': 'string', 'page': 'integer', 'page_size': 'integer'}||{'page': 'integer', 'page_size': 'integer', 'records': 'array', 'total_page': 'integer', 'total_records': 'integer'}
+修改当前用户密码|http|put|/users/password|{'Authorization': 'string'}|||{'new_password': 'string', 'old_password': 'string'}|
+删除用户|http|delete|/users|{'Authorization': 'string'}|||{'ids': 'array'}|{'affected': 'integer'}

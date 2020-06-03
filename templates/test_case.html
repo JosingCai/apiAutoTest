@@ -1,0 +1,108 @@
+{% extends 'test_base.html' %}
+
+{% block title %} 
+   {{ project }} Test Case Info 
+{% endblock %}
+
+{% block editContent %}
+<form method="post" action ="/{{ project }}/testcase/{{ sheet_index }}">
+    &nbsp;&nbsp;&nbsp;用例编号:<input type="text" width=20 value='' name="case_num" placeholder='' size="40"/>
+    &nbsp;&nbsp;&nbsp;用例名称:<input type="text" width=20 value='' name="case_name" placeholder='' size="40"/>
+    &nbsp;&nbsp;&nbsp;测试类型:
+    <select name="case_type" style="width:245px;">
+        <option value ="base_fun">基本功能测试</option>
+        <option value ="scene">场景测试</option>
+        <option value ="abnormal">异常测试</option>
+        <option value ="longtime">长时间测试</option>
+        <option value ="pressure">压力测试</option>
+        <option value ="ui_interactive">UI交互测试</option>
+        <option value ="security">安全测试</option>
+    </select><br>
+    &nbsp;&nbsp;&nbsp;预置条件:<textarea name="pre_condition" cols="38" rows="4"></textarea>
+    &nbsp;&nbsp;&nbsp;测试范围:<textarea name="test_range" cols="39" rows="4"></textarea>
+    &nbsp;&nbsp;&nbsp;测试步骤:<textarea name="test_steps" cols="39" rows="4"></textarea>
+    &nbsp;&nbsp;&nbsp;预期结果:<textarea name="expected_result" cols="39" rows="4"></textarea><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;优先级:&nbsp;<select name="priority" style="width:245px;">
+        <option value ="level0">Level0</option>
+        <option value ="level1">Level1</option>
+        <option value ="level2">Level2</option>
+        <option value ="level3">Level3</option>
+        <option value ="level4">Level4</option>
+        <option value ="level5">Level5</option>
+    </select>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;自动化:<select name="auto_test" style="width:245px;">
+        <option value ="yes">是</option>
+        <option value ="no">否</option>
+    </select>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关联API:<input type="text" value='' name="related_api" placeholder='' size="40" /><br>
+    功能开发者:<select name="fun_dev" style="width:245px;">
+        <option value ="tangtianyun">汤天云</option>
+        <option value ="pengganyu">彭甘雨</option>
+        <option value ="huxiejiang">胡协江</option>
+        <option value ="xieenxin">谢恩信</option>
+        <option value ="yanzhengkai">闫振凯</option>
+        <option value ="songyunyuan">宋旭源</option>
+        <option value ="weixiang">魏翔</option>
+        <option value ="xiewenhe">谢文和</option>
+    </select>
+    &nbsp;用例设计者:<select name="test_design" style="width:245px;">
+        <option value ="caijiaoxing">蔡姣行</option>
+        <option value ="chengshanshan">陈珊珊</option>
+        <option value ="xiemengjia">聂梦佳</option>
+        <option value ="dengqian">邓倩</option>
+        <option value ="zhangqingyue">张静悦</option>
+    </select>
+    &nbsp;&nbsp;测试执行者:<select name="test_operator" style="width:245px;">
+        <option value ="caijiaoxing">蔡姣行</option>
+        <option value ="chengshanshan">陈珊珊</option>
+        <option value ="xiemengjia">聂梦佳</option>
+        <option value ="dengqian">邓倩</option>
+        <option value ="zhangqingyue">张静悦</option>
+    </select><br>
+    &nbsp;&nbsp;&nbsp;测试日期:<input type="text" value='' name="test_date" placeholder='' size="40" />
+    &nbsp;&nbsp;&nbsp;测试结果:<select name="test_result" style="width:245px;">
+        <option value ="untest">未测试</option>
+        <option value ="pass">PASS</option>
+        <option value ="fail">FAIL</option>
+        <option value ="un_merge">未合入</option>
+        <option value ="deprecated">废弃</option>
+    </select>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;备注:<input type="text" value='' name="remark" placeholder='' size="40" />
+    <input type="submit" value="新增">
+</form>
+{% endblock %}
+
+{% block tableContent %}
+    {% if sheet_index == 0 %}
+    <form method="post" action ="/{{ project }}/testcase/split">
+        <input type="submit" name="split" value="归类"/>
+    </form>
+    {% endif %}
+
+    <table border="1" cellspacing="1" cellpadding="0">
+    <tr>
+        <th>操作</th>
+        {% for item in titles %}
+        <th>{{ item }}</th>
+        {% endfor %}
+    </tr>
+    {% for info in transList %}
+    <tr>
+        <td align="center">
+            <form method="post" action ="/{{ project }}/testcase/{{ sheet_index }}/test">
+                <input type="submit" name={{ info|first }} value="测试"/>
+            </form>
+            <form method="post" action ="/{{ project }}/testcase/{{ sheet_index }}/delete">
+                <input type="submit" name={{ info|first }} value="删除"/>
+            </form>
+            <form method="post" action ="/{{ project }}/testcase/{{ sheet_index }}/put">
+                <input type="submit" name={{ info|first }} value="修改"/>
+                {% for item in info %}
+                <td><textarea name="{{ loop.index0 }}" cols="30" rows="4"> {{ item }}</textarea></td>
+                {% endfor %}
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+    </table>
+{% endblock %} 

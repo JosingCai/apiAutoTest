@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AutoTest</title>
+</head>
+<body>
+    <h3>Test Host Info</h3>
+    <div id="content" style="">
+    <div>
+        <form method="post" action ="/test/host">
+            PRODUCTION:&nbsp;<input type="text" width=20 value='' name="PRODUCTION" placeholder='SRV/BOOT/DAVINCI' size="40" required="required"/><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IP:&nbsp;<input type="text" value='' name="IP" placeholder='x.x.x.x' size="40" /><br>
+            &nbsp;&nbsp;&nbsp;PROTOCOL:
+            <select name="PROTOCOL" style="width:245px;">
+                <option value ="http">http</option>
+                <option value ="https">https</option>
+            </select><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AUTH:
+            <select name="AUTH" style="width:245px;">
+                <option value ="yes">yes</option>
+                <option value ="no">no</option>
+            </select><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TOKEN:&nbsp;<input type="text" value='' name="TOKEN" placeholder='' size="40" /><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PREPATH:&nbsp;<input type="text" value='' name="PREPATH" placeholder='' size="40" /><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PORT:&nbsp;<input type="text" value='' name="PORT" placeholder='8081/8090' size="40" /><br>
+            &nbsp;&nbsp;&nbsp;THREADING:
+            <select name="THREADING" style="width:245px;">
+                <option value ="False">False</option>
+                <option value ="True">True</option>
+            </select><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;SQLINJECT:
+            <select name="SQLINJECT" style="width:245px;">
+                <option value ="False">False</option>
+                <option value ="True">True</option>
+            </select><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DEBUG:
+            <select name="DEBUG" style="width:245px;">
+                <option value ="True">True</option>
+                <option value ="False">False</option>
+            </select>
+            <input type="submit" value="新增">
+        </form>
+    </div>
+    </div>
+    <br>
+    <table border="1" cellspacing="1" cellpadding="0">
+    <tr>
+        <th colspan=2>operate</th>
+        <th>PRODUCTION</th>
+        <th colspan=2>ITEM</th>
+        <th>IP</th>
+        <th>PROT</th>
+        <th>AUTH</th>
+        <th>PORT</th>
+        <th>PREPATH</th>
+        <th>DEBUG</th>
+        <th>TOKEN</th>
+    </tr>
+    {% for info in transList %}
+    <tr>
+        <td>
+            <form method="POST" action ="/test/host/remove" >
+                <input type="submit" name={{ info.PRODUCTION }} value="删除" >
+            </form>
+        </td> 
+         <form method="post" action ="/test/host">
+            <td><input type="submit" name="modify" value="修改"/></td>
+
+            <td align="center"><a href="{{ LINK_PATH_HEAD }}/{{ info.PRODUCTION }}/source">{{ info.PRODUCTION }}</a></td>
+
+            <td align="center"><a href="{{ LINK_PATH_HEAD }}/{{ info.PRODUCTION }}/source">&nbsp;&nbsp;apiCase&nbsp;&nbsp;</a></td>
+            <td align="center"><a href="{{ LINK_PATH_HEAD }}/{{ info.PRODUCTION }}/testcase/0">&nbsp;&nbsp;testCase&nbsp;&nbsp;</a></td>
+            <td style="display:none;"><input type="text" name="PRODUCTION" value="{{ info.PRODUCTION }}"></td>
+            <td align="center"><input type="text" name="IP" value="{{ info.IP }}" size="12"></td>
+            <td align="center"><input type="text" name="PROTOCOL" value="{{ info.PROTOCOL }}" size="6"></td>
+            <td align="center"><input type="text" name="AUTH" value="{{ info.AUTH }}" size="6"></td>
+            <td align="center"><input type="text" name="PORT" value="{{ info.PORT }}" size="6"></td>
+            <td align="center"><input type="text" name="PREPATH" value="{{ info.PREPATH }}" size="18"></td> 
+            <td align="center"><input type="text" name="DEBUG" value="{{ info.DEBUG }}" size="6"></td>
+            <td align="center"><input type="text" name="TOKEN" value="{{ info.TOKEN }}" size="200"></td>
+        </form>
+    </tr>
+    {% endfor %}
+    </table>
+</body>
+</html>

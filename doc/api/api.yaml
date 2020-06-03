@@ -1,0 +1,37 @@
+swagger: "2.0"
+
+info:
+  version: 1.0.0
+  title: Simple API
+  description: A simple API to learn how to write OpenAPI Specification
+
+schemes:
+  - https
+host: simple.api
+basePath: /openapi101
+
+paths:
+  /apiinfos:
+    get:
+      summary: Gets some api info
+      description: Returns a list containing all api info.
+      responses:
+        200:
+          description: A list of api info
+          schema:
+            type: array
+  /apiinfos/{id}:
+    get:
+      summary: Gets API info
+      description: Returns api info.
+      responses:
+        200:
+          description: A api info
+          schema:
+            type: dict
+            items:
+              required:
+                - id
+              properties:
+                id:
+                  type: string

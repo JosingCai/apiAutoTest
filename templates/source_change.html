@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %} 
+   {{ project }} API Source Change Info 
+{% endblock %}
+
+{% block editContent %}
+{% endblock %}
+
+{% block tableContent %}
+    <tr>
+        <th>oprator</th>
+        <th>case_id</th>
+        <th>old_raw</th>
+        <th>new_raw</th>
+    </tr>
+    {% for info in transList %}
+    <tr>
+        <td align="center">
+            <form method="post" action ="/{{ project }}/source/put">
+                <input type="submit" name={{ info.section }} value="确认更新"/>
+            </form>
+             <form method="post" action ="/{{ project }}/source/remove">
+                <input type="submit" name={{ info.section }} value="删除"/>
+            </form>
+        </td>
+        <td>{{ info.section }}</td>
+        <td>{{ info.old_raw }}</td>
+        <td>{{ info.new_raw }}</td>
+    </tr>
+    {% endfor %}
+{% endblock %}
