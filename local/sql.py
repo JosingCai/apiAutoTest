@@ -5,7 +5,7 @@ from flask_sqlalchemy import SQLALchemy
 
 app.secret_key = "yunjikei"
 # 配置数据库的修改地址
-app.config['SQLALCHEMY_DADABASE_URI'] = "mysql://root:zaq1@WSX@127.0.0.1/db_name"
+app.config['SQLALCHEMY_DADABASE_URI'] = "mysql://user:pwd@127.0.0.1/db_name"
 # 跟踪数据库的修改 --> 不建议开启 未来的版本中会移除
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLALchemy(app)
